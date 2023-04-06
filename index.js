@@ -11,12 +11,27 @@ form.addEventListener("submit", (e) => {
     formValidation();
 });
 
+// validates the input field ~ user cannot submit blank input field
 function formValidation() {
     if (textInput.value === "") {
         msg.innerHTML = "Task cannot be blank";
-        console.log("failure")
     } else {
         msg.innerHTML = "";
-        console.log("success")
+        acceptData();
     }
 }
+
+// collect and store user inputs in localStorage
+const data = [];
+
+function acceptData() {
+    data.push({
+        text: textInput.value,
+        date: dateInput.value,
+        description: textArea.value,
+    })
+
+    localStorage.setItem("data", JSON.stringify(data));
+
+    console.log(data)
+};
