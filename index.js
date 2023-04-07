@@ -39,5 +39,33 @@ function acceptData() {
 
     localStorage.setItem("data", JSON.stringify(data));
 
-    console.log(data)
+    createTasks();
+};
+
+//to create task, template literals is used to create the HTML elements, and a map is used to push the data collected from the user inside the template. 
+function createTasks() {
+    tasks.innerHTML = "";
+    data.map((data, idx) => {
+        return (tasks.innerHTML += `
+                <div id=${idx}>
+                    <span class="fw-bold">${data.text}</span>
+                    <span class="small text-secondary">${data.date}</span>
+                    <p>${data.description}</p>
+
+                    <span class="options">
+                        <i onClick= "editTask(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
+                        <i onClick ="deleteTask(this);createTasks()" class="fas fa-trash-alt"></i>
+                    </span>
+                </div>
+        `);
+    });
+
+    resetForm();
+};
+
+
+function resetForm() {
+    textInput.value = "";
+    dateInput.value = "";
+    textArea.value = "";
 };
