@@ -11,17 +11,23 @@ form.addEventListener("submit", (e) => {
     formValidation();
 });
 
-// validates the input field ~ user cannot submit blank input field
+// validates the input field & dismiss modal
 function formValidation() {
     if (textInput.value === "") {
         msg.innerHTML = "Task cannot be blank";
     } else {
         msg.innerHTML = "";
         acceptData();
+        add.setAttribute("data-bs-dismiss", "modal");
+        add.click();
+
+        (() => {
+            add.setAttribute("data-bs-dismiss", "");
+        })();
     }
 }
 
-// collect and store user inputs in localStorage
+// collect and store user inputs to localStorage
 const data = [];
 
 function acceptData() {
