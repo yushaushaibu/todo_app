@@ -25,7 +25,7 @@ function formValidation() {
             add.setAttribute("data-bs-dismiss", "");
         })();
     }
-}
+};
 
 // collect and store user inputs to localStorage
 const data = [];
@@ -70,7 +70,7 @@ function resetForm() {
     textArea.value = "";
 };
 
-
+// delete task
 function deleteTask(e) {
     e.parentElement.parentElement.remove();
     data.splice(e.parentElement.parentElement.id, 1);
@@ -78,6 +78,7 @@ function deleteTask(e) {
     localStorage.setItem("data", JSON.stringify(data));
 };
 
+// edit task
 function editTask(e) {
     const selectedTask = e.parentElement.parentElement;
 
@@ -87,3 +88,10 @@ function editTask(e) {
 
     deleteTask(e);
 };
+
+// retrieve data from localStorage
+(() => {
+    data = JSON.parse(localStorage.getItem("data")) || [];
+    console.log(data);
+    createTasks();
+})();
