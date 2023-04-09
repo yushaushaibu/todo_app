@@ -77,3 +77,13 @@ function deleteTask(e) {
 
     localStorage.setItem("data", JSON.stringify(data));
 };
+
+function editTask(e) {
+    const selectedTask = e.parentElement.parentElement;
+
+    textInput.value = selectedTask.children[0].innerHTML;
+    dateInput.value = selectedTask.children[0].innerHTML;
+    textArea.value = selectedTask.children[0].innerHTML;
+
+    deleteTask(e);
+};
